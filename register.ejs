@@ -1,0 +1,31 @@
+<%- include("./partials/header") %>
+    <section id="banner">
+        <div class="container">
+
+    <div class="sign-up-form">
+        <h2 class="text-white">Find My Friends</h2>
+        <div class="line-divider"></div>
+        <div class="form-wrapper">
+            <p class="signup-text">Sign Up</p>
+            <form action='/register' method="POST">
+                <fieldset class="form-group">
+                    <input type="text" class="form-control" id="example-name" placeholder="Enter username" required name='username'>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="email" class="form-control" id="example-email" placeholder="Enter email" required name="email">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="password" class="form-control" id="example-password" placeholder="password" required name="password">
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="password" class="form-control" id="example-password" placeholder="Confirm password" required name="passwordConfirm">
+                </fieldset>
+                <p>By signning up you agree to the terms</p>
+                <button class="btn-secondary">SignUp</button>
+            </form>
+        </div>
+         <a href="/login">Already have an account?</a>
+    </div>
+</div>
+    </section>
+<%- include("./partials/footer") %>

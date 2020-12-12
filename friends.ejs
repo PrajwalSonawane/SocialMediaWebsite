@@ -1,0 +1,99 @@
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <!-- Timeline
+        ================================================= -->
+        <div class="timeline">
+          <div class="timeline-cover">
+            <% if(user.cover_image) { %>
+            <img src="<%= user.cover_image %>" class="cover-photo">
+            <% } %>
+            <!--Timeline Menu for Large Screens-->
+            <div class="timeline-nav-bar hidden-sm hidden-xs">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="profile-info">
+                    <% if(user.image_url) { %>
+                    <img src="<%= user.image_url %>" alt="" class="img-responsive profile-photo" />
+                    <% } else { %>
+                    <img src="/images/dp.png" alt="" class="img-responsive profile-photo" />
+                    <% } %>
+                    <h3><a href="/profile/<%= user.id %>" ><%= user.username %></a></h3>
+                    <p><%= user.email %></p>
+                    <% if (currentuser != undefined) { %>
+                        <% if(user.id === currentuser.id) { %>
+                            <a href="/profile/<%= user.id %>/edit" class="btn btn-primary">Edit profile</a>
+                        <% } %>
+                        <% } %>
+                    <!-- <p class="text-muted">Creative Director</p> -->
+                  </div>
+                </div>
+                <div class="col-md-9">
+                  <ul class="list-inline profile-menu">
+                    <li><a href="/profile/<%= user.id %>" class="active">About</a></li>
+                    <li><a href="/profile/<%= user.id %>/album">Album</a></li>
+                    <li><a href="/profile/<%= user.id %>/friends">Friends</a></li>
+                  </ul>
+                  <ul class="follow-me list-inline">
+                    <li><%= friend_count %> Friends</li>
+                    <% if(currentuser.id != user.id) { %>
+                      <li><button class="btn-primary">Add Friend</button></li>
+                    <% } %>
+                  </ul>
+                </div>
+               </div>
+            </div>
+            </div>
+            <div id="page-contents">
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-7">
+                  <div>
+                    <% friends.forEach(function(element) { %>
+                    <div class="friend-card-each">
+                        <img src="<%= element.image_url %>" alt="" height="110" width="120" class="">
+                        <a href="/profile/<%= element.id %>" class="profile-link"><p><%= element.username%></p></a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                          Message
+                        </button>
+                        <!-- <button type="button" class="friends-message" name="button">Friends</button> -->
+                        <!-- The Modal -->
+                        <div class="modal fade" id="myModal">
+                          <form class="" action="/message/<%= element.id %>" method="post">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">Please type the message you want to send</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                <textarea name="message" rows="8" cols="80"></textarea>
+                              </div>
+
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+
+                                  <button type="submit" class="btn btn-success">Send</button>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+
+                              </div>
+
+                            </div>
+                          </div>
+                          </form>
+                        </div>
+                    </div>
+                    <br>
+                    <% }); %>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+<%- include("../partials/footer") %>

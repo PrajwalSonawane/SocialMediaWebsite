@@ -1,0 +1,77 @@
+<%- include("./partials/header") %>
+
+    <div id="page-contents">
+    	<div class="container">
+    		<div class="row">
+
+    			<div class="col-md-3 static">
+            <div class="profile-card">
+              <% if(currentuser.image_url) { %>
+                <img src="<%= currentuser.image_url %>" alt="user" class="profile-photo" />
+                <% } else { %>
+                <img src="/images/dp.png" alt="user" class="profile-photo" />
+                <% } %>
+            	<h5><a href="/profile/<%= currentuser.id %>" class="text-white"><%= currentuser.username %> </a></h5>
+            	<a href="#" class="text-white"><i class="fa fa-user-plus" aria-hidden="true"></i> 1,299 followers</a>
+            </div>
+            <ul class="nav-news-feed">
+              <li><i class="fa fa-newspaper-o" aria-hidden="true"></i><div><a href="/">My Newsfeed</a></div></li>
+              <li><i class="fa fa-users" aria-hidden="true"></i><div><a href="#">Friends</a></div></li>
+              <li><i class="fa fa-camera" aria-hidden="true"></i><div><a href="/profile/<%= currentuser.id %>/album">My Album</a></div></li>
+            </ul>
+
+          </div>
+    			<div class="col-md-7">
+            <div class="post-content">
+              <% if(element.post_image) { %>
+              <img src="<%= element.post_image %>" alt="post-image" class="img-responsive post-image" />
+              <% } else { %>
+              <img src="/images/no_image.jpg" alt="post-image" class="img-responsive post-image" />
+              <% } %>
+              <div class="post-container">
+                <% if(element.image_url) { %>
+                <img src="<%= element.image_url %>" alt="user" class="profile-photo-md pull-left" />
+                <% } else { %>
+                <img src="/images/dp.png" alt="user" class="profile-photo-md pull-left" />
+                <% } %>
+                <div class="post-detail">
+                  <div class="user-info">
+                    <h5><a href="/profile/<%= element.id %>" class="profile-link"><%= element.username %></a> <span class="following">following</span></h5>
+                   <%  if(element.created) {  %>
+                    <p ><%= element.created.toDateString() %></p>
+                      <% } %>
+                  </div>
+                  <div class="reaction">
+                    <a class="btn text-green"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 13</a>
+                    <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
+                  </div>
+                  <div class="line-divider"></div>
+                  <div class="post-text">
+                    <p><%= element.post_string %></p>
+                  </div>
+
+                  <br><br>
+                  <a href="/posts/<%= element.post_id %>">Read More</a>
+                  <div class="line-divider"></div>
+                  <div class="post-comment">
+                    <img src="/images/users/user-11.jpg" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                  </div>
+                  <div class="post-comment">
+                    <img src="/images/users/user-4.jpg" alt="" class="profile-photo-sm" />
+                    <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
+                  </div>
+                  <div class="post-comment">
+                    <% if(currentuser.image_url) { %>
+                      <img src="<%= currentuser.image_url %>" alt="" class="profile-photo-sm" />
+                    <% } else { %>
+                      <img src="/images/dp.png" alt="" class="profile-photo-sm" />
+                    <%  }  %>
+                      <input type="text" class="form-control" placeholder="Post a comment">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+<%- include("./partials/footer") %>

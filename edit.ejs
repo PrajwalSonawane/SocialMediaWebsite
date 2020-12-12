@@ -1,0 +1,55 @@
+<%- include("../partials/header") %>
+    <div class="margin">
+    <div class="container">
+        <h1 class="text-center">Edit Profile</h1><br>
+        <form action="/profile/<%= user.id%>?_method=PUT" method="POST">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="username"  value="<%=user.username %>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Where do you Study?</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"name="college"  value="<%=user.college %>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Hometown</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name = "hometown"  value="<%= user. hometown %>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Country / State </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="state"  value="<%=user.state %>">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Date of Birth</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" name="dob" value="<%=user.dob %>">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Change profile photo</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="image_url"  value="<%=user.image_url %>">
+                </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Change Cover photo</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="cover_image"  value="<%=user.cover_image %>">
+              </div>
+          </div>
+            <button class="btn btn-primary">Save changes</button>
+        </form>
+    </div>
+    </div>
+<%- include("../partials/footer") %>
+

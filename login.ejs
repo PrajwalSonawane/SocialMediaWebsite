@@ -1,0 +1,23 @@
+<%- include("./partials/header") %>
+    <section id="banner">
+        <div class="container">
+
+    <div class="sign-up-form">
+        <h2 class="text-white">Find My Friends</h2>
+        <div class="line-divider"></div>
+        <div class="form-wrapper">
+            <p class="signup-text">Sign In </p>
+            <form action='/login' method="POST">
+                <fieldset class="form-group">
+                    <input type="text" class="form-control" id="example-name" placeholder="Enter username" required name='username'>
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="password" class="form-control" id="example-password" placeholder="password" required name="password">
+                </fieldset>
+                <button class="btn-secondary">Signin</button>
+            </form>
+        </div>
+    </div>
+</div>
+    </section>
+<%- include("./partials/footer") %>

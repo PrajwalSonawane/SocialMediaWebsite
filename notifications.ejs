@@ -1,0 +1,45 @@
+<%- include("./partials/header") %>
+
+    <div class="container">
+      <div class="card">
+          <h2>Friend Requests (<%= users_who_send_request.length %>)</h2><br>
+          <% users_who_send_request.forEach(function(element) { %>
+            <hr>
+            <div class="card-body">
+
+            <div class="req-alert">
+              <div class="">
+                <a href="/profile/<%= element.id %>"><%= element.username %></a> sent you a friend request <br><br>
+              </div>
+              <div class="req-alert">
+                <div class="acpt-req" style="margin-right: 20px">
+                  <a href="/accept/<%= element.id %>"><span class="material-icons" style="color: black; font-size: 40px">
+                  check
+                  </span></a>
+                </div>
+                <div class="rejt-req">
+                  <a href="/reject/<%= currentuser.id %>/<%= element.id %>"><span class="material-icons" style="color: black; font-size: 40px">
+                  clear
+                  </span></a>
+                </div>
+              </div>
+            </div>
+            <hr>
+            </div>
+          <% }); %>
+
+          <h2>Messages (<%= msgs_rcvd.length %>)</h2><br>
+          <% msgs_rcvd.forEach(function(element) {  %>
+            <hr>
+            <div class="card-body">
+            <b><a href="/profile/<%= element.myuser %>"><%= element.username %></a> sent you a Message</b> <br><br>
+            <p><%= element.message %></p>
+            <hr>
+            </div>
+          <%  }); %>
+
+
+      </div>
+    <div>
+
+<%- include("./partials/footer") %>

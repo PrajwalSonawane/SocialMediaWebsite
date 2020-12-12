@@ -1,0 +1,122 @@
+<%- include("./partials/header") %>
+
+
+    <div id="page-contents">
+    	<div class="container">
+    		<div class="row">
+
+
+    			<div class="col-md-3 static">
+            <div class="profile-card">
+              <% if(currentuser.image_url) { %>
+            	<img src="<%= currentuser.image_url %>" alt="user" class="profile-photo" />
+              <% } else { %>
+            	<img src="/images/dp.png" alt="user" class="profile-photo" />
+              <% } %>
+              <h5><a href="/profile/<%= currentuser.id %>" class="text-white"><%= currentuser.username %> </a></h5>
+            	<a href="#" class="text-white"><i class="fa fa-user-plus" aria-hidden="true"></i> <%= friend_count %> Friends</a>
+            </div>
+            <ul class="nav-news-feed">
+              <li><i class="fa fa-newspaper-o" aria-hidden="true"></i><div><a href="/">My Newsfeed</a></div></li>
+              <li><i class="fa fa-users" aria-hidden="true"></i><div><a href="#">Friends</a></div></li>
+              <li><i class="fa fa-camera" aria-hidden="true"></i><div><a href="/profile/<%= currentuser.id %>/album">My Album</a></div></li>
+            </ul>
+
+          </div>
+
+            <div class="col-md-9">
+
+              <!-- <div class="create-post">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <% if(currentuser.image_url) { %>
+                      <img src="<%= currentuser.image_url %>" alt="user" class="profile-photo" />
+                      <% } else { %>
+                      <img src="/images/dp.png" alt="user" class="profile-photo" />
+                      <% } %>
+                  </div>
+                  <div class="col-md-10 col-sm-10">
+                    <form action="/" method="POST">
+                      <div class="form-group">
+                         <textarea id="exampleTextarea" cols="120" style="margin-bottom: 5px  ;"rows="2" name="newspost" class="form-control" placeholder="Write what you wish"></textarea>
+                      </div>
+                      <div class=""form-group>
+                         <input type=" text" name="postImage" class="form-control"  style="margin-bottom: 5px  ;"placeholder="Enter post image">
+                      </div>
+                      <button class="btn btn-primary ">Post</button>
+                    </form>
+                    </div>
+                </div>
+              </div> -->
+              <div class="friend-list">
+                <div class="row">
+               <% if(data.length > 0){data.map((user) =>{ %>
+
+                  <div class="col-md-6 col-sm-6">
+                    <div class="friend-card">
+                      <% if(user.cover_image) { %>
+                        <img src="<%= user.cover_image %>" alt="profile-cover" class="img-responsive cover" />
+                      <% } else { %>
+                        <img src="/images/no-cover.png" style="width: 200px;" alt="profile-cover" class="img-responsive cover" />
+                      <% } %>
+                        <div class="card-info">
+                        <% if(user.image_url) { %>
+                          <img src="<%= user.image_url %>" alt="user" class="profile-photo-lg" />
+                        <% } else { %>
+                          <img src="/images/dp.png" alt="user" class="profile-photo-lg" />
+                        <% } %>
+                        <div class="friend-info">
+                          <% if (isfriend == "message") { %>
+                            <button class="pull-right  btn-primary" data-toggle="modal" data-target="#myModal">Message</button>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal">
+                              <form class="" action="/message/<%= user.id %>" method="post">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                  <!-- Modal Header -->
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Please type the message you want to send</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                    <textarea name="message" rows="8" cols="80"></textarea>
+                                  </div>
+
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+
+                                      <button type="submit" class="btn btn-success">Send</button>
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+
+                                  </div>
+
+                                </div>
+                              </div>
+                              </form>
+                            </div>
+                           <% } else if (isfriend == "add friend") { %>
+                            <a href="/addfriend/<%= user.id %>"class="pull-right  btn-primary">Add Friend</a>
+                          <% } else if (isfriend == "request sent") { %>
+                            <a href="#"class="pull-right  btn-primary">Request sent</a>
+                          <% } else if (isfriend == "login to add friend") { %>
+                            <a href="/login"class="pull-right  btn-primary">Login to add friend</a>
+                          <% } else { %>
+                            <a href="#"></a>
+                          <% } %>
+                          <h5><a href="/profile/<%= user.id %>" class="profile-link"><%= user.username %></a></h5>
+                          <p>Lives in <%= user.hometown %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% })} %>
+              </div>
+              </div>
+        </div>
+        </div>
+        </div>
+<%- include("./partials/footer") %>
